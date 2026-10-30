@@ -40,6 +40,7 @@ class BukuController extends Controller
             'penulis' => 'required|string|max:255',
             'tahun_terbit' => 'required|integer|min:1000|max:9999',
             'sinopsis' => 'nullable|string',
+            'penerbit' => 'nullable|string|max:255',
         ]);
 
         Buku::create($validated);
@@ -60,6 +61,7 @@ class BukuController extends Controller
             'penulis' => 'required|string|max:255',
             'tahun_terbit' => 'required|integer|min:1000|max:9999',
             'sinopsis' => 'nullable|string',
+            'penerbit' => 'nullable|string|max:255',
         ]);
 
         $buku->update($validated);

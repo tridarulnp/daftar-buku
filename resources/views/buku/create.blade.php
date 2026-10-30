@@ -51,7 +51,14 @@
                         <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
-
+                <div>
+                     <label for="penerbit">Penerbit</label>
+                     <input type="text" name="penerbit" id="penerbit"
+                        value="{{ old('penerbit') }}">
+                    @error('penerbit')
+                        <p>{{ $message }}</p>
+                    @enderror
+                </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-2">
                         Tahun Terbit

@@ -13,6 +13,7 @@ class Buku extends Model
         'penulis',
         'tahun_terbit',
         'sinopsis',
+        'penerbit',
     ];
 }
 

@@ -47,67 +47,70 @@
                 </button>
             </form>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="p-4">No.</th>
-                            <th class="p-4">Judul Buku</th>
-                            <th class="p-4">Penulis</th>
-                            <th class="p-4">Tahun</th>
-                            <th class="p-4">Aksi</th>
-                        </tr>
-                    </thead>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                    <tbody>
-                        @forelse($bukus as $buku)
-                            <tr class="border-b">
-                                <td class="p-4">
-                                    {{ $loop->iteration }}
-                                </td>
-                                <td class="p-4 font-medium">
-                                    <a href="{{ route('buku.show', $buku) }}" 
-                                    class="text-indigo-700 hover:underline"> 
-                                     {{ $buku->judul }} 
-                                    </a> 
-                                </td>
-                                <td class="p-4">
-                                    {{ $buku->penulis }}
-                                </td>
-                                <td class="p-4">
-                                    {{ $buku->tahun_terbit }}
-                                </td>
-                                <td class="p-4">
-                                    <div class="flex gap-2">
-                                        <a href="{{ route('buku.edit', $buku) }}"
-                                           class="text-blue-600">
-                                            Edit
-                                        </a>
+                @forelse($bukus as $buku)
 
-                                        <form action="{{ route('buku.destroy', $buku) }}"
-                                              method="POST"
-                                              onsubmit="return confirm('Hapus buku ini?')">
-                                            @csrf
-                                            @method('DELETE')
+                    <div class="bg-gray-50 border rounded-xl p-5 shadow-sm">
 
-                                            <button type="submit"
-                                                    class="text-red-600">
-                                                Hapus
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5"
-                                    class="text-center p-8 text-gray-500">
-                                    Belum ada data buku.
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                        <h2 class="text-xl font-bold text-gray-800 mb-3">
+                            {{ $buku->judul }}
+                        </h2>
+
+                        <p class="text-gray-600 mb-2">
+                            <span class="font-semibold">Penulis:</span>
+                            {{ $buku->penulis }}
+                        </p>
+
+                        <p class="text-gray-600 mb-2">
+                            <span class="font-semibold">Penerbit:</span>
+                            {{ $buku->penerbit ?? '-' }}
+                        </p>
+
+                        <p class="text-gray-600 mb-3">
+                            <span class="font-semibold">Tahun Terbit:</span>
+                            {{ $buku->tahun_terbit }}
+                        </p>
+
+                        <div class="border-t pt-3 mt-3">
+                            <p class="font-semibold text-gray-700 mb-1">
+                                Sinopsis
+                            </p>
+                            <p class="text-gray-500 text-sm">
+                                {{ $buku->sinopsis ?: 'Belum ada sinopsis.' }}
+                            </p>
+                        </div>
+
+                        <div class="flex gap-4 mt-5">
+
+                            <a href="{{ route('buku.edit', $buku) }}"
+                               class="text-blue-600 hover:underline">
+                                Edit
+                            </a>
+
+                            <form action="{{ route('buku.destroy', $buku) }}"
+                                  method="POST"
+                                  onsubmit="return confirm('Hapus buku ini?')">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                        class="text-red-600 hover:underline">
+                                    Hapus
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                @empty
+
+                    <div class="col-span-full text-center p-8 text-gray-500">
+                        Belum ada data buku.
+                    </div>
+
+                @endforelse
+
             </div>
 
             <div class="mt-6">
@@ -119,3 +122,4 @@
 
 </body>
 </html>
+

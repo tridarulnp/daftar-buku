@@ -52,7 +52,20 @@
                         <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="mb-4">
+                    <label class="block font-medium mb-2">
+                        Penerbit
+                    </label>
+                   
+                    <input type="text" name="penerbit"
+                        value="{{ old('penerbit', $buku->penerbit) }}"
+                        class="w-full border rounded-lg px-4 py-2"
+                        placeholder="Masukkan nama penerbit">
 
+                    @error('penerbit')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+                </div>
                 <div class="mb-4">
                     <label class="block font-medium mb-2">
                         Tahun Terbit
